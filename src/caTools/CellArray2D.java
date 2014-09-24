@@ -14,7 +14,6 @@ public class CellArray2D {
 	public final int width;
 	private final Cell[][] cells;
 	private final Cell[][] copy;
-	private final ArrayList<Cell> roster = new ArrayList<Cell>();
 
 	/**
 	 * Instantiates a wXh CellArray2D containing only dead cells
@@ -68,25 +67,23 @@ public class CellArray2D {
 	}
 
 	/**
-	 * Retrieves the cells in the vertical orthogonal neighborhood about the
-	 * ij-th cell of radius r. Cells are organized in a top-down fashion
-	 * 
+	 * Retrieves the number of living cells in the vertical neighborhood about the
+	 * ij-th cell of radius r.
 	 * @param i
 	 * @param j
 	 * @param r
 	 * @return array of neighboring cells.
 	 */
-	public CellArray1D getVertical(int i, int j, int r) {
-		roster.clear();
+	public int getVertical(int i, int j, int r) {
 		int imax = this.length;
-
+		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
 			int ii = i - r + n;
 			if (boundariesOK(ii, i, 0, imax)) {
-				roster.add(this.getCell(ii, j));
+				sum += this.getCell(ii, j).toBit();
 			}
 		}
-		return new CellArray1D(roster.toArray(new Cell[roster.size()]));
+		return sum;
 	}
 
 	/**
@@ -98,16 +95,16 @@ public class CellArray2D {
 	 * @param r
 	 * @return
 	 */
-	public CellArray1D getHorizontal(int i, int j, int r) {
-		roster.clear();
+	public int getHorizontal(int i, int j, int r) {
 		int jmax = this.width;
+		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
 			int jj = j - r + n;
 			if (boundariesOK(jj, j, 0, jmax)) {
-				roster.add(this.getCell(i, jj));
+				sum += this.getCell(i,jj).toBit();
 			}
 		}
-		return new CellArray1D(roster.toArray(new Cell[roster.size()]));
+		return sum;
 	}
 
 	/**
@@ -119,18 +116,18 @@ public class CellArray2D {
 	 * @param j
 	 * @return
 	 */
-	public CellArray1D getRightDiag(int i, int j, int r) {
-		roster.clear();
+	public int getRightDiag(int i, int j, int r) {
 		int imax = this.length;
 		int jmax = this.width;
+		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
 			int ii = i + r - n;
 			int jj = j - r + n;
 			if (boundariesOK(ii, i, 0, imax) && boundariesOK(jj, j, 0, jmax)) {
-				roster.add(this.getCell(ii, jj));
+				sum += this.getCell(ii, jj).toBit();
 			}
 		}
-		return new CellArray1D(roster.toArray(new Cell[roster.size()]));
+		return sum;
 	}
 
 	/**
@@ -143,18 +140,50 @@ public class CellArray2D {
 	 * @param r
 	 * @return
 	 */
-	public CellArray1D getLeftDiag(int i, int j, int r) {
-		roster.clear();
+	public int getLeftDiag(int i, int j, int r) {
 		int imax = this.length;
 		int jmax = this.width;
+		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
 			int ii = i - r + n;
 			int jj = j - r + n;
 			if (boundariesOK(ii, i, 0, imax) && boundariesOK(jj, j, 0, jmax)) {
-				roster.add(this.getCell(ii, jj));
+				sum += this.getCell(ii,jj).toBit();
 			}
 		}
-		return new CellArray1D(roster.toArray(new Cell[roster.size()]));
+		return sum;
+	}
+	
+	/**
+	 * Returns the number of living cells in the moore neighborhood about the ij-th cell. 
+	 * @param i
+	 * @param j
+	 * @param r
+	 * @return
+	 */
+	public int moore(int i, int j) {
+		int sum = 0;
+		sum += this.getVertical(i, j, 1);
+		sum += this.getHorizontal(i, j, 1);
+		sum += this.getRightDiag(i, j, 1);
+		sum += this.getLeftDiag(i, j, 1);
+		return sum;
+	}
+	
+	/**
+	 * Returns the number of living cells in the Von Neumann neighborhood of radius r about the ij-th cell.
+	 * @param i
+	 * @param j
+	 * @param r
+	 * @return
+	 */
+	public int vonNeumann(int i, int j, int r) {
+		int sum = 0;
+		sum += this.getVertical(i, j, r);
+		sum += this.getHorizontal(i, j, r);
+		sum += this.getRightDiag(i, j, r-1);
+		sum += this.getLeftDiag(i, j, r-1);
+		return sum;
 	}
 
 	/**

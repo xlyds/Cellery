@@ -1,6 +1,6 @@
-package caSketch;
+package caTools;
 
-public class Lattices {
+public class CellerySeeds {
 
 	public static int[][] centeredRectangular(int length, int width) {
 		int[][] cr = new int[length][width];
@@ -42,7 +42,7 @@ public class Lattices {
 		}
 
 		r[length / 4][width / 2] = 1;
-		r[length * 3 / 4 + 1][width / 2] = 1;
+		r[length * 3 / 4 + 1][width / 2+1] = 1;
 		return r;
 	}
 }

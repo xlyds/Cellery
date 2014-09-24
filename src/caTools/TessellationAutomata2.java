@@ -33,42 +33,6 @@ public class TessellationAutomata2 extends CellularAutomata2D {
 	}
 
 	/**
-	 * Gets all of the elements of cells that are orthogonal and diagonal to the
-	 * cell cells[i][j]
-	 * 
-	 * @param i
-	 *            horizontal position of cell
-	 * @param j
-	 *            vertical position of cell
-	 * @return the array of orthogonal and diagonal elements
-	 */
-	public int getDiagOrth(int i, int j) {
-		CellArray1D h = this.cells().getHorizontal(i, j, 1);
-		CellArray1D v = this.cells().getVertical(i, j, 1);
-		CellArray1D d1 = this.cells().getLeftDiag(i, j, 1);
-		CellArray1D d2 = this.cells().getRightDiag(i, j, 1);
-		return (h.livingCells() + v.livingCells() + d1.livingCells() + d2
-				.livingCells());
-	}
-
-	/**
-	 * Gets all of the elements of cells that are orthogonal to the cell
-	 * cells[i][j]
-	 * 
-	 * @param i
-	 *            horizontal position of cell
-	 * @param j
-	 *            vertical position of cell
-	 * @return the array of orthogonal elements
-	 */
-	public int getOrth(int i, int j) {
-		CellArray1D h = this.cells().getHorizontal(i, j, 1);
-		CellArray1D v = this.cells().getVertical(i, j, 1);
-		return (h.livingCells() + v.livingCells());
-
-	}
-
-	/**
 	 * Determines if the cell at the i,jth position of cells is the the next
 	 * generation of automata when step is odd. 1 indicates that the i,jth will
 	 * be in the next generation and no otherwise.
@@ -82,7 +46,7 @@ public class TessellationAutomata2 extends CellularAutomata2D {
 	public int oddStep(int i, int j) {
 		if (this.cellDeath != 1 && this.cells().getCell(i, j).isAlive())
 			return 1;
-		if (this.getDiagOrth(i, j) == 1)
+		if (this.cells().moore(i, j) == 1)
 			return 1;
 		else
 			return 0;
@@ -102,7 +66,7 @@ public class TessellationAutomata2 extends CellularAutomata2D {
 	public int evenStep(int i, int j) {
 		if (this.cellDeath != 1 && this.cells().getCell(i, j).isAlive())
 			return 1;
-		if (this.getOrth(i, j) == 1)
+		if (this.cells().vonNeumann(i, j, 1) == 1)
 			return 1;
 		else
 			return 0;

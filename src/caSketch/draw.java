@@ -2,7 +2,6 @@ package caSketch;
 
 import caTools.*;
 import processing.core.*;
-import caSketch.Lattices;
 
 @SuppressWarnings("serial")
 public class draw extends PApplet {
@@ -19,16 +18,17 @@ public class draw extends PApplet {
 
 	Sierpenski mySierpenski;
 	TessellationAutomata2 myTA;
-	TessellationAutomata4A myTA4A;
+	TessellationAutomata4B myTA4B;
 	Life myLife;
+	DayAndNight myDay;
 
 	public void setup() {
-		size(300, 600, JAVA2D);
+		size(600, 600, JAVA2D);
 		noStroke();
 		background(0);
 		
-		density = (float) 85;
-		cellSize = 1;
+		density = (float) 40;
+		cellSize = 3;
 		gridWidth = width / cellSize;
 		gridHeight = height / cellSize;
 
@@ -41,7 +41,7 @@ public class draw extends PApplet {
 		// CellArray1D singleCell = new CellArray1D(singleDefect1D);
 		// CellArray2D singleCell2D = new CellArray2D( randomOnes(density,
 		// gridWidth, gridHeight) );
-		int[][] halfLattice = Lattices.mixed(gridHeight, gridWidth);
+		// int[][] halfLattice = CellerySeeds.mixed(gridHeight, gridWidth);
 
 		// myCA = new CellularAutomata(gridWidth, gridHeight, density, 6, "on"
 		// );
@@ -49,13 +49,18 @@ public class draw extends PApplet {
 		// myTA = new TessellationAutomata2(singleCell2D, 2, 0);
 		// myLife = new Life( new CellArray2D( randomOnes(density, gridWidth,
 		// gridHeight) ) );
-		myTA4A = new TessellationAutomata4A(new CellArray2D(halfLattice));
+		// myTA4B = new TessellationAutomata4B(new CellArray2D(halfLattice));
+		myDay = new DayAndNight(new CellArray2D( randomOnes(density, gridWidth, gridHeight) ));
 	}
 
 	public void draw() {
 		if (maybeIterate()) {
-			drawStep2D(myTA4A);
+			drawStep2D(myDay);
 			lastRunTime = millis();
+		}
+		
+		if (keyCode == ENTER){
+			saveFrame("home/zach/Pictures/CA/f.jpg");
 		}
 	}
 
