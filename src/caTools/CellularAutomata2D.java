@@ -1,5 +1,7 @@
 package caTools;
 
+import java.lang.reflect.*;
+
 /**
  * CellularAutomate2D is an object that can evolve Cells contained in a CellArray2D 
  * according to a set of rules.
@@ -19,8 +21,24 @@ public abstract class CellularAutomata2D extends CellularAutomata {
 		this.cells = cells;
 		this.length = cells.length;
 		this.width = cells.width;
-		//We just need a blank CellArray2D for now
-		this.buffer = new CellArray2D(this.length, this.width);
+		this.buffer = null;
+		@SuppressWarnings("rawtypes")
+		Constructor[] ctors = cells.getClass().getConstructors();
+		@SuppressWarnings("rawtypes")
+		Constructor ctor = ctors[0];
+		try{
+			ctor.setAccessible(true);
+			this.buffer = (CellArray2D) ctor.newInstance(((Object) (new int[length][width])));
+			
+		} catch (InstantiationException x) {
+		    x.printStackTrace();
+	 	} catch (InvocationTargetException x) {
+	 	    x.printStackTrace();
+		} catch (IllegalAccessException x) {
+		    x.printStackTrace();
+		}
+			
+
 	}
 
 	protected void updateCells(CellArray2D buffer) {
