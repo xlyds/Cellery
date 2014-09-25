@@ -100,5 +100,5 @@ public class CellArrayCylinderTest {
 		int actual14 = test.moore(1, 4);
 		assertEquals(expected14, actual14);
 	}
-
+	
 }

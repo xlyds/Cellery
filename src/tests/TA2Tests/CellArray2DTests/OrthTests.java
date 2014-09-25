@@ -7,7 +7,7 @@ import org.junit.Test;
 import caTools.CellArray2D;
 
 public class OrthTests {
-	CellArray2D test = new CellArray2D(3, 3);
+	int[][] testBin = {{0,1,0}, {1,1,0}, {1,0,0}};
 
 	/*
 	 * {{0,1,0},
@@ -17,10 +17,7 @@ public class OrthTests {
 	 
 	@Test
 	public void test() {
-		test.resurrectCell(2, 0);
-		test.resurrectCell(1, 0);
-		test.resurrectCell(0, 1);
-		test.resurrectCell(1, 1);
+		CellArray2D test = new CellArray2D( testBin );
 
 		int expectedh001 = 1;
 		int actualh001 = test.getHorizontal(0, 0, 1);

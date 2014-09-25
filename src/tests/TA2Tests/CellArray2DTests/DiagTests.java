@@ -7,18 +7,13 @@ import org.junit.Test;
 import caTools.CellArray2D;
 
 public class DiagTests {
-	CellArray2D test = new CellArray2D(3, 3);
+	int[][] testBin = {{0,1,0}, 
+			           {0,1,0}, 
+			           {1,0,0}};
 
-	/*
-	 * {{0,1,0}, 
-	 *  {0,1,0}, 
-	 *  {1,0,0}}
-	 */
 	@Test
 	public void test() {
-		test.resurrectCell(2, 0);
-		test.resurrectCell(0, 1);
-		test.resurrectCell(1, 1);
+		CellArray2D test = new CellArray2D(testBin);
 
 		int expectedr001 = 0;
 		int actualr001 = test.getRightDiag(0, 0, 1);
