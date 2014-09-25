@@ -1,11 +1,20 @@
 package caTools;
 
+/**
+ * CellArray2D endowed with cylindrical topology
+ * @author Zach Tidwell
+ *
+ */
 public class CellArrayCylinder extends CellArray2D{
 	
 	public CellArrayCylinder( int[][] cells ) {
 		super( cells );
 	}
 	
+	/**
+	 * Retriever the number of living cells in the horizontal neighborhood of radius r about
+	 * the ij-th cell in the cylinder.
+	 */
 	@Override
 	public int getHorizontal(int i, int j, int r) {
 		int sum = 0;
@@ -19,8 +28,7 @@ public class CellArrayCylinder extends CellArray2D{
 	
 	/**
 	 * Retrieves the cells in the right-hand diagonal neighborhood of radius r
-	 * about the ij-th cell. Neighboring cells are listed in a counter-clockwise
-	 * fashion.
+	 * about the ij-th cell in the cylinder.
 	 * 
 	 * @param i
 	 * @param j
@@ -29,7 +37,6 @@ public class CellArrayCylinder extends CellArray2D{
 	@Override
 	public int getRightDiag(int i, int j, int r) {
 		int imax = this.length;
-		int jmax = this.width;
 		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
 			int ii = i + r - n;
@@ -43,8 +50,7 @@ public class CellArrayCylinder extends CellArray2D{
 	
 	/**
 	 * Retrieves the Cells in the left-hand diagonal neighborhood of radius r
-	 * about the ij-th cell. Neighboring Cells are list in a counter-clockwise
-	 * fashion.
+	 * about the ij-th cell in the cylinder.
 	 * 
 	 * @param i
 	 * @param j
@@ -53,7 +59,6 @@ public class CellArrayCylinder extends CellArray2D{
 	 */
 	public int getLeftDiag(int i, int j, int r) {
 		int imax = this.length;
-		int jmax = this.width;
 		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
 			int ii = i - r + n;

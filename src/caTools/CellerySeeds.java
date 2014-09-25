@@ -1,5 +1,10 @@
 package caTools;
 
+/**
+ * Provides methods that can seed Cellular Automata rules
+ * @author Zach Tidwell
+ *
+ */
 public class CellerySeeds {
 
 	public static int[][] centeredRectangular(int length, int width) {

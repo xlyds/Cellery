@@ -84,7 +84,7 @@ public class CellArray2D {
 
 	/**
 	 * Retrives the cells in the horizontal neighborhood orthogonal to the ij-th
-	 * cell of radius r. Cells are organized in a left-right fashion.
+	 * cell of radius r.
 	 * 
 	 * @param i
 	 * @param j
@@ -105,8 +105,7 @@ public class CellArray2D {
 
 	/**
 	 * Retrieves the cells in the right-hand diagonal neighborhood of radius r
-	 * about the ij-th cell. Neighboring cells are listed in a counter-clockwise
-	 * fashion.
+	 * about the ij-th cell.
 	 * 
 	 * @param i
 	 * @param j
@@ -128,8 +127,7 @@ public class CellArray2D {
 
 	/**
 	 * Retrieves the Cells in the left-hand diagonal neighborhood of radius r
-	 * about the ij-th cell. Neighboring Cells are list in a counter-clockwise
-	 * fashion.
+	 * about the ij-th cell.
 	 * 
 	 * @param i
 	 * @param j

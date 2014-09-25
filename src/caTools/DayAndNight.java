@@ -1,5 +1,10 @@
 package caTools;
 
+/**
+ * CellularAutomata2D endowed with the Day & Night Rules
+ * @author zach
+ *
+ */
 public class DayAndNight extends CellularAutomata2D{
 	
 	public DayAndNight(CellArray2D cells){
@@ -31,4 +36,6 @@ public class DayAndNight extends CellularAutomata2D{
 		this.updateCells(buffer);
 		this.next();
 	}
+	
+	//TODO: Add inversion method.
 }

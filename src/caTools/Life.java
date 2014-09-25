@@ -1,5 +1,9 @@
 package caTools;
-
+/**
+ * CellularAutomata object endowed with the Game of Life rules
+ * @author Zach Tidwell
+ *
+ */
 public class Life extends CellularAutomata2D {
 
 	public Life(CellArray2D cells) {
