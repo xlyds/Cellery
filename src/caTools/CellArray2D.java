@@ -13,16 +13,6 @@ public class CellArray2D {
 	private final Cell[][] cells;
 
 	/**
-	 * Instantiates a wXh CellArray2D containing only dead cells
-	 * 
-	 * @param w
-	 * @param h
-	 */
-	public CellArray2D(int l, int w) {
-		this(initializeCells(new int[l][w]));
-	}
-
-	/**
 	 * Instantiates a CellArray2D from a given binary array
 	 * 
 	 * @param binArray
