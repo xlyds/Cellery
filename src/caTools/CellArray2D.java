@@ -1,8 +1,8 @@
 package caTools;
 
 /**
- * A CellArray is a 2-d array of Cell objects which can retrieve the
- * neighborhood about individual cells
+ * A CellArray is a 2-d array of Cell objects which can retrieve
+ * neighborhoods about individual cells
  * 
  * @author Zach Tidwell
  * 
@@ -181,7 +181,7 @@ public class CellArray2D {
 	}
 
 	/**
-	 * Converts this CellArray to an Array of booleans representing the states
+	 * Converts this CellArray to a binary array representing the states
 	 * of the cells contained therein.
 	 * 
 	 * @return boolean Array

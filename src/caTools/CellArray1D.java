@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * CellArray is a 1d array of Cell objects which can kill or resurrect Cells and
- * retrive neighborhoods about specific Cells.
+ * retrieve neighborhoods about individual Cells.
  */
 public class CellArray1D {
 
