@@ -1,7 +1,7 @@
 package caTools;
 
 /**
- * CellArray2D endowed with cylindrical topology
+ * CellArray2D embedded in a Cylindrical Space
  * @author Zach Tidwell
  *
  */
@@ -12,7 +12,7 @@ public class CellArrayCylinder extends CellArray2D{
 	}
 	
 	/**
-	 * Retriever the number of living cells in the horizontal neighborhood of radius r about
+	 * Retrieve the number of living cells in the horizontal neighborhood of radius r about
 	 * the ij-th cell in the cylinder.
 	 */
 	@Override
@@ -70,6 +70,12 @@ public class CellArrayCylinder extends CellArray2D{
 		return sum;
 	}
 	
+	/**
+	 * Quotient function that identifies each opposite end of the array with the other
+	 * @param x
+	 * @param N
+	 * @return
+	 */
 	public static int mod(int x, int N){
 		if ( x < 0 ){
 			return mod(N+x,N);
