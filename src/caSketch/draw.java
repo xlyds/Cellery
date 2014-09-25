@@ -23,12 +23,12 @@ public class draw extends PApplet {
 	DayAndNight myDay;
 
 	public void setup() {
-		size(600, 600, JAVA2D);
+		size(600, 300, JAVA2D);
 		noStroke();
 		background(0);
 		
-		density = (float) 40;
-		cellSize = 3;
+		density = (float) 85;
+		cellSize = 5;
 		gridWidth = width / cellSize;
 		gridHeight = height / cellSize;
 
@@ -47,15 +47,14 @@ public class draw extends PApplet {
 		// );
 		// mySierpenski = new Sierpenski(singleCell);
 		// myTA = new TessellationAutomata2(singleCell2D, 2, 0);
-		// myLife = new Life( new CellArray2D( randomOnes(density, gridWidth,
-		// gridHeight) ) );
-		// myTA4B = new TessellationAutomata4B(new CellArray2D(halfLattice));
-		myDay = new DayAndNight(new CellArray2D( randomOnes(density, gridWidth, gridHeight) ));
+		myLife = new Life( new CellArrayCylinder( CellerySeeds.randomOnes(density, gridWidth, gridHeight) ) );
+		//myTA4B = new TessellationAutomata4B(new CellArray2D(halfLattice));
+		//myDay = new DayAndNight(new CellArrayCylinder( CellerySeeds.randomOnes(density, gridWidth, gridHeight) ));
 	}
 
 	public void draw() {
 		if (maybeIterate()) {
-			drawStep2D(myDay);
+			drawStep2D(myLife);
 			lastRunTime = millis();
 		}
 		
@@ -67,20 +66,6 @@ public class draw extends PApplet {
 	public boolean maybeIterate() {
 		return abs(millis() - lastRunTime) > timeInterval;
 
-	}
-
-	public int[][] randomOnes(float density, int width, int height) {
-		int[][] randomOnes = new int[height][width];
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
-				int random = (int) random(100);
-				if (random < density)
-					randomOnes[i][j] = 0;
-				else
-					randomOnes[i][j] = 1;
-			}
-		}
-		return randomOnes;
 	}
 
 	public void drawStep1D(CellularAutomata1D ca) {

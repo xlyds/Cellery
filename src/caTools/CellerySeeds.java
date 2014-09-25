@@ -45,4 +45,18 @@ public class CellerySeeds {
 		r[length * 3 / 4 + 1][width / 2+1] = 1;
 		return r;
 	}
+	
+	public static int[][] randomOnes(float density, int width, int height) {
+		int[][] randomOnes = new int[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				int random = (int) (100*Math.random());
+				if (random < density)
+					randomOnes[i][j] = 0;
+				else
+					randomOnes[i][j] = 1;
+			}
+		}
+		return randomOnes;
+	}
 }

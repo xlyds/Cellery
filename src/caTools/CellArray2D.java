@@ -1,7 +1,5 @@
 package caTools;
 
-import java.util.ArrayList;
-
 /**
  * A CellArray is a 2-d array of Cell objects which can retrieve the
  * neighborhood about individual cells
@@ -13,7 +11,6 @@ public class CellArray2D {
 	public final int length;
 	public final int width;
 	private final Cell[][] cells;
-	private final Cell[][] copy;
 
 	/**
 	 * Instantiates a wXh CellArray2D containing only dead cells
@@ -21,8 +18,8 @@ public class CellArray2D {
 	 * @param w
 	 * @param h
 	 */
-	public CellArray2D(int w, int h) {
-		this(initializeCells(new int[w][h]));
+	public CellArray2D(int l, int w) {
+		this(initializeCells(new int[l][w]));
 	}
 
 	/**
@@ -43,7 +40,6 @@ public class CellArray2D {
 		this.length = cells.length;
 		this.width = cells[0].length;
 		this.cells = cells;
-		this.copy = new Cell[this.length][this.width];
 	}
 
 	/**
@@ -62,7 +58,7 @@ public class CellArray2D {
 		return cells;
 	}
 
-	private static boolean boundariesOK(int ii, int i, int min, int max) {
+	protected static boolean boundariesOK(int ii, int i, int min, int max) {
 		return (!(ii < min) && !(ii >= max) && (ii != i));
 	}
 
@@ -202,13 +198,6 @@ public class CellArray2D {
 		return bin;
 	}
 
-	/**
-	 * Makes a deep copy of this
-	 */
-	public CellArray2D copy() {
-		System.arraycopy(this.cells, 0, copy, 0, this.length);
-		return new CellArray2D(this.copy);
-	}
 
 	/**
 	 * Counts the number of living Cells in this
