@@ -3,7 +3,7 @@ package caTools;
 import java.util.ArrayList;
 
 /**
- * CellArray is a 1d array of Cell objects which can kill or resurrect Cells and
+ * CellArray is a 2d array of Cell objects which can kill or resurrect Cells and
  * retrieve neighborhoods about individual Cells.
  */
 public class CellArray1D {
