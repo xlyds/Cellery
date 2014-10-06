@@ -1,8 +1,8 @@
-\bin
-\src\tests
-\src\caSketch
-\.settings
-\.classpath
-\.project
-\core.jar
+/bin
+/src/tests
+/src/caSketch
+/.settings
+/.classpath
+/.project
+/core.jar
 

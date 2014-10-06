@@ -1,12 +1,5 @@
 /**
-
-
-
-Cellery v0.1
-@author Zach Tidwell
-
-
-The MIT License (MIT)
+ * The MIT License (MIT)
 
 Copyright (c) <2014> <Zach Tidwell>
 
@@ -30,4 +23,10 @@ THE SOFTWARE.
 
  */
 
+
+/**
+ * Cellery v0.1
+ * @author Zach Tidwell
+ *
+ */
 package cellery;
