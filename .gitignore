@@ -1,4 +1,5 @@
 \bin
+\src\tests
 \src\caSketch
 \.settings
 \.classpath
