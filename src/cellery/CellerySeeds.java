@@ -1,7 +1,7 @@
 package cellery;
 
 /**
- * Provides methods that can provide initial conditions for Cellular Automata rules.
+ * Static methods for generating initial conditions for 2-state Automata.
  * @author Zach Tidwell
  */
 public class CellerySeeds {

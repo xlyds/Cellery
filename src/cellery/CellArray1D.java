@@ -1,6 +1,11 @@
 package cellery;
 
-import java.util.ArrayList;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import topology.Topology1D;
+import topology.Topology1D.Base;
+import topology.Topology1D.Space;
 
 
 /**
@@ -9,25 +14,50 @@ import java.util.ArrayList;
  * @author Zach Tidwell
  */
 public class CellArray1D {
-
+	
+	/**
+	 * the number of Cells in this.
+	 */
 	public final int length;
+	
+	/**
+	 * the underlying array of Cells
+	 */
 	private final Cell[] cells;
-	private final ArrayList<Cell> roster = new ArrayList<Cell>();
-
+	
+	/**
+	 * The topology of this CellArray2D
+	 */
+	protected Topology1D topo;
+	
+	/**
+	 * the name of the getNeighborhood method specified by topo
+	 */
+	private Method getNeighborhood;
+	
+	/**
+	 * Instantiates a {@link CellArray1D} from an int array with the standard radial topology 
+	 * of the fineness granularity.
+	 * @param intArray an array of ints representing the initial states of this
+	 */
+	public CellArray1D(int[] intArray){
+		this(initializeCells(intArray), new Topology1D(Base.RADIAL, 1, Space.STD) );
+	}
+	
 	/**
 	 * Instantiates a {@link CellArray1D} of length containing only dead {@linkplain Cell}s.
 	 * @param length the number of Cells in the array 
 	 */
-	public CellArray1D(int length) {
-		this(initializeCells(new int[length]));
+	public CellArray1D(int length, Topology1D topo) {
+		this(initializeCells(new int[length]), topo);
 	}
 
 	/**
 	 * Instantiates a {@link CellArray1D} from an array of integers.
 	 * @param intArray the generating array
 	 */
-	public CellArray1D(int[] intArray) {
-		this(initializeCells(intArray));
+	public CellArray1D(int[] intArray, Topology1D topo) {
+		this(initializeCells(intArray), topo);
 
 	}
 
@@ -35,9 +65,20 @@ public class CellArray1D {
 	 * Instantiates a {@link CellArray1D} from a {@link Cell}[]
 	 * @param cells an array of cells
 	 */
-	protected CellArray1D(Cell[] cells) {
+	protected CellArray1D(Cell[] cells, Topology1D topo) {
 		this.length = cells.length;
 		this.cells = cells;
+		this.topo = topo;
+		
+		String neighborhood = this.topo.getBasis().getMethodName();
+		
+		Class<?>[] args = {int.class, int.class};
+		
+		try {
+			this.getNeighborhood = this.getClass().getMethod(neighborhood, args);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -53,7 +94,38 @@ public class CellArray1D {
 		}
 		return newCells;
 	}
-
+	
+	/**
+	 * Retrieves the number of living {@link Cell}s in a region of radius r to the left of the 
+	 * Cell at position i
+	 * @param i the position of the Cell
+	 * @param r the radius of the left-hand region 
+	 */
+	public int leftOf(int i, int r){
+		int sum = 0;
+		for ( int n = i - r; n < i ; n ++ ){
+			if ( !(n<0) )
+				sum += this.getCell(n).toBit();
+		}
+		return sum;
+	}
+	
+	/**
+	 * Retrieves the number of living {@link Cell}s in a region of radius r to the right of the 
+	 * Cell at position i
+	 * @param i the position of the Cell
+	 * @param r the radius of the right-hand region 
+	 */
+	public int rightOf(int i, int r){
+		int sum = 0;
+		for ( int n = i + r; n > i ; n--){
+			if ( !(n >= this.length) ){
+				sum += this.getCell(n).toBit();
+			}
+		}
+		return sum;
+	}
+	
 	/**
 	 * Retrieves the {@link CellArray1D} containing the {@link Cell}s about the i-th Cell in a
 	 * symmetric neighborhood of radius r.
@@ -61,17 +133,36 @@ public class CellArray1D {
 	 * @param r the radius of the neighborhood
 	 * @return CellArray containing the neighboring cells.
 	 */
-	public CellArray1D getNeighbors(int i, int r) {
-		roster.clear();
-		if (r > this.length / 2)
-			r = this.length / 2;
-		for (int x = i - r; x <= i + r; x++) {
-			if (!(x < 0) && !(x >= this.length) && (x != i))
-				roster.add(this.getCell(x));
-		}
-		return new CellArray1D(roster.toArray(new Cell[roster.size()]));
+	public int radial(int i, int r) {
+		return (this.rightOf(i, r) + this.leftOf(i, r));
 	}
-
+	
+	/**
+	 * Gets the neighborhood that is specified by this topology
+	 * @param i the index of the neighborhood center
+	 * @return the number of living Cells in this neighborhood
+	 */
+	public int getNeighborhood(int i){
+		
+		int r = this.topo.coarseness;
+		
+		try {
+			return (int) getNeighborhood.invoke(this, i, r);
+			
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	/**
+	 * Retrieve the {@link Topology} of this
+	 * @return the {@link Topology}
+	 */
+	public Topology1D getTopology(){
+		return this.topo;
+	}
+	
 	/**
 	 * Gives an array of binary Values corresponding to the {@link Cell}s in this.
 	 * 1 indicates that the Cell is alive and 0 indicates that it is dead.

@@ -1,33 +1,76 @@
 package cellery;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import topology.Topology2D;
 
 
 /**
- * A CellArray is a 2-d array of {@link Cell} objects which can kill and revive Cells and retrieve
- * neighborhoods about individual cells.
+ * A CellArray2D is a two dimensional grid of {@link Cell}s. This object provides information to a client 
+ * {@link Automaton2D} about the states of Cells in a region with a geometry that is specified by an instance 
+ * of a {@link Topology2D}.
  * @author Zach Tidwell
- * 
+ * @see {@link Topology2D}, {@link Automaton2D}, {@link Cell}
  */
-public class CellArray2D {
-	public final int length;
-	public final int width;
-	private final Cell[][] cells;
-
+public class CellArray2D{
+	
 	/**
-	 * Instantiates a {@link CellArray2D} from an array of integers.
-	 * @param intArray the generating array.
+	 * The vertical dimension of this CellArray2D
 	 */
-	public CellArray2D(int[][] intArray) {
-		this(initializeCells(intArray));
+	public final int length;
+	
+	/**
+	 * The horizontal dimension of this CellArray2D
+	 */
+	public final int width;
+	
+	/**
+	 * The underlying array
+	 */
+	private final Cell[][] cells;
+	/**
+	 * The topology of this CellArray2D
+	 */
+	protected Topology2D topo;
+	
+	/**
+	 * the name of the getNeighborhood method specified by topo
+	 */
+	private Method getNeighborhood;
+	
+	/**
+	 * Creates a {@link CellArray2D} from an array of ints and an instance {@link Topology2D}, which specifies
+	 * the the geometry of neighborhoods about member Cells
+	 * @param intArray the generating array.
+	 * @param topo the Topology of this
+	 * @see {@link Topology2D}, {@link Automaton2D}, {@link Cell}
+	 */
+	public CellArray2D(int[][] intArray, Topology2D topo) {
+		this(initializeCells(intArray), topo);
 	}
 
 	/**
-	 * Instantiates a {@link CellArray2D} from a {@link Cell}[][].
-	 * @param cells a 2D array of Cells.
+	 * Creates a {@link CellArray2D} from an array of Cells and an instance {@link Topology2D}, which specifies
+	 * the the geometry of neighborhoods about member Cells
+	 * @param intArray the generating array.
+	 * @param topo the Topology of this
+	 * @see {@link Topology2D}, {@link Automaton2D}, {@link Cell}
 	 */
-	protected CellArray2D(Cell[][] cells) {
+	protected CellArray2D(Cell[][] cells, Topology2D topo) {
 		this.length = cells.length;
 		this.width = cells[0].length;
 		this.cells = cells;
+		this.topo = topo;
+		
+		String neighborhood = this.topo.getBasis().getMethodName();
+		
+		Class<?>[] args = {int.class, int.class, int.class};
+		
+		try {
+			this.getNeighborhood = this.getClass().getMethod(neighborhood, args);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -58,14 +101,24 @@ public class CellArray2D {
 	 * @return the number of living cells.
 	 */
 	public int getVertical(int i, int j, int r) {
-		int imax = this.length;
+
 		int sum = 0;
+		int imax = this.length;
+		int jmax = this.width;
 		for (int n = 0; n <= 2 * r; n++) {
-			int ii = i - r + n;
-			if (boundariesOK(ii, i, 0, imax)) {
-				sum += this.getCell(ii, j).toBit();
+			int ii = topo.idI(i - r + n, j, imax, jmax);
+			int jj = topo.idJ(i, j, imax, jmax);
+			
+			if ( 
+				(!(ii < 0) && !(ii >= imax)) &&
+				(!(jj < 0) && !(jj >= jmax)) && 
+				(ii != i || jj != j )
+			   )
+			{
+				sum += this.getCell(ii, jj).toBit();
 			}
 		}
+		
 		return sum;
 	}
 
@@ -78,12 +131,14 @@ public class CellArray2D {
 	 * @return the number of living cells.
 	 */
 	public int getHorizontal(int i, int j, int r) {
-		int jmax = this.width;
 		int sum = 0;
+		int imax = this.length;
+		int jmax = this.width;
 		for (int n = 0; n <= 2 * r; n++) {
-			int jj = j - r + n;
-			if (boundariesOK(jj, j, 0, jmax)) {
-				sum += this.getCell(i,jj).toBit();
+			int ii = topo.idI(i, j - r + n, imax, jmax);
+			int jj = topo.idJ(i, j - r + n, imax, jmax);
+			if ( (!(ii < 0) && !(ii >= imax)) && (!(jj < 0) && !(jj >= jmax)) && (ii != i || jj != j ) ) {
+				sum += this.getCell(ii,jj).toBit();
 			}
 		}
 		return sum;
@@ -98,13 +153,13 @@ public class CellArray2D {
 	 * @return the number of living cells.
 	 */
 	public int getRightDiag(int i, int j, int r) {
+		int sum = 0;
 		int imax = this.length;
 		int jmax = this.width;
-		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
-			int ii = i + r - n;
-			int jj = j - r + n;
-			if (boundariesOK(ii, i, 0, imax) && boundariesOK(jj, j, 0, jmax)) {
+			int ii = topo.idI(i + r - n, j - r + n, imax, jmax);
+			int jj = topo.idJ(i, j - r + n, imax, jmax);
+			if ( (!(ii < 0) && !(ii >= imax)) && (!(jj < 0) && !(jj >= jmax)) && (ii != i || jj != j ) ) {
 				sum += this.getCell(ii, jj).toBit();
 			}
 		}
@@ -120,12 +175,12 @@ public class CellArray2D {
 	 * @return the number of living cells.
 	 */
 	public int getLeftDiag(int i, int j, int r) {
+		int sum = 0;
 		int imax = this.length;
 		int jmax = this.width;
-		int sum = 0;
 		for (int n = 0; n <= 2 * r; n++) {
-			int ii = i - r + n;
-			int jj = j - r + n;
+			int ii = topo.idI(i - r + n, j - r + n, imax, jmax);
+			int jj = topo.idJ(i, j - r + n, imax, jmax);
 			if (boundariesOK(ii, i, 0, imax) && boundariesOK(jj, j, 0, jmax)) {
 				sum += this.getCell(ii,jj).toBit();
 			}
@@ -139,12 +194,20 @@ public class CellArray2D {
 	 * @param j column index containing the central cell.
 	 * @return the number of living cells.
 	 */
-	public int moore(int i, int j) {
+	public int moore(int i, int j, int r ) {
 		int sum = 0;
-		sum += this.getVertical(i, j, 1);
-		sum += this.getHorizontal(i, j, 1);
-		sum += this.getRightDiag(i, j, 1);
-		sum += this.getLeftDiag(i, j, 1);
+		int imax = this.length;
+		int jmax = this.width;
+		for (int n = 0; n <= 2*r; n++){
+			for (int m = 0; m <= 2*r; m++){
+				int ii = topo.idI(i - r + n, j - r + m, imax, jmax);
+				int jj = topo.idJ(i, j - r + m, imax, jmax);
+				if ( (!(ii < 0) && !(ii >= imax)) && (!(jj < 0) && !(jj >= jmax)) && (ii != i || jj != j )) {
+					sum += this.getCell(ii,jj).toBit();
+				}
+			}
+
+		}
 		return sum;
 	}
 	
@@ -152,7 +215,7 @@ public class CellArray2D {
 	 * Returns the number of living {@link Cell}s in the Von Neumann neighborhood of radius r about the ij-th cell.
 	 * @param i row index containing the central cell.
 	 * @param j column index containing the central cell.
-	 * @param r radius if the neighborhood.
+	 * @param r radius of the neighborhood.
 	 * @return the number of living cells.
 	 */
 	public int vonNeumann(int i, int j, int r) {
@@ -163,7 +226,58 @@ public class CellArray2D {
 		sum += this.getLeftDiag(i, j, r-1);
 		return sum;
 	}
-
+	
+	/**
+	 * Returns the number of living {@link Cell}s in the neighborhood consisting of the north-west and south-east corners of
+	 * radius r about the ij-th cell.
+	 * @param i row index containing the central cell.
+	 * @param j column index containing the the cental cell.
+	 * @param r radius of the neighborhood
+	 * @return the number of living cells.
+	 */
+	public int leftCorners(int i, int j, int r){
+		int sum = 0;
+		sum += this.getLeftDiag(i, j, r);
+		sum += this.getVertical(i, j, r);
+		sum += this.getHorizontal(i, j, r);
+		return sum;
+	}
+	
+	/**
+	 * Returns the number of living {@link Cell}s in the neighborhood consisting of the north-east and south-west corners of
+	 * radius r about the ij-th cell.
+	 * @param i row index containing the central cell.
+	 * @param j column index containing the the cental cell.
+	 * @param r radius of the neighborhood
+	 * @return the number of living cells.
+	 */
+	public int rightCorners(int i, int j, int r){
+		int sum = 0;
+		sum += this.getRightDiag(i, j, r);
+		sum += this.getVertical(i, j, r);
+		sum += this.getHorizontal(i, j, r);
+		return sum;
+	}
+	/**
+	 * Gets the neighborhood that is specified by this topology
+	 * @param i first index of the neighborhood center
+	 * @param j second index of the neighborhood center
+	 * @return 
+	 */
+	
+	public int getNeighborhood(int i, int j){
+		
+		int r = this.topo.coarseness;
+		
+		try {
+			return (int) getNeighborhood.invoke(this, i, j, r);
+			
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 	/**
 	 * Gives an array of binary Values corresponding to the {@link Cell}s in this.
 	 * 1 indicates that the Cell is alive and 0 indicates that it is dead.
@@ -218,10 +332,21 @@ public class CellArray2D {
 	 * @param i row position
 	 * @param j column position
 	 */
-	public void resurrectCell(int i, int j) {
+	public void reviveCell(int i, int j) {
 		this.cells[i][j].revive();
 	}
-
+	
+	public void setTopology(Topology2D topo){
+		this.topo = topo;
+		String neighborhood = this.topo.getBasis().getMethodName();
+		Class<?>[] args = {int.class, int.class, int.class};
+		try {
+			this.getNeighborhood = this.getClass().getMethod(neighborhood, args);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Translates this into a String containing binary integers representing the {@link Cell} states of this.
 	 * @return a string representing this.

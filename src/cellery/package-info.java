@@ -25,7 +25,7 @@ THE SOFTWARE.
 
 
 /**
- * Cellery v0.1
+ * Cellery v0.2
  * @author Zach Tidwell
  *
  */
