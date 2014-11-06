@@ -12,7 +12,7 @@ TODO:
 + Add a drawing suite.
 + Add a computation / analytic suite.
 
-[Alt text](http://i.imgur.com/FHydLka.jpg)
+[Cellery in action!](http://i.imgur.com/FHydLka.jpg)
 
 The MIT License (MIT)
 
