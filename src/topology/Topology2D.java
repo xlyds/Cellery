@@ -153,7 +153,7 @@ public class Topology2D{
 	 * The type of identity space of this topology.
 	 */
 	private final Class<?> space;
-	http://en.wikipedia.org/wiki/Federal_Emergency_Management_Agency	
+
 	/**
 	 * Identity function that maps boundary points as specified by this topology.
 	 */
