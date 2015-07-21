@@ -1,8 +1,16 @@
-/bin
-/src/tests
-/src/caSketch
+# Eclipse
 /.settings
 /.classpath
 /.project
+
+# build
 /core.jar
+/bin
+
+# Sketch
+/src/caSketch
+
+# intellij
+*.iml
+.idea
 
