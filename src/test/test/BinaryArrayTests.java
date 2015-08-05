@@ -1,13 +1,13 @@
-package java;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import java.cellery.topology.Topology2D;
-import java.cellery.topology.Topology2D.Base;
-import java.cellery.topology.Topology2D.Space;
-import java.cellery.CellArray2D;
+import cellery.topology.Topology2D;
+import cellery.topology.Topology2D.Base;
+import cellery.topology.Topology2D.Space;
+import cellery.CellArray2D;
 
 public class BinaryArrayTests {
 	int[][] testBin = {{0,1,0}, 

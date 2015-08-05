@@ -1,14 +1,14 @@
-package java;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.cellery.topology.Topology2D;
-import java.cellery.topology.Topology2D.Base;
-import java.cellery.topology.Topology2D.Space;
-import java.cellery.CellArray2D;
+import cellery.topology.Topology2D;
+import cellery.topology.Topology2D.Base;
+import cellery.topology.Topology2D.Space;
+import cellery.CellArray2D;
 
 public class MobiusTest {
 	int[][] testBin = {{1,0,0,0,1},

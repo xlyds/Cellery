@@ -1,4 +1,4 @@
-package java.cellery;
+package cellery;
 
 import processing.core.*;
 

@@ -1,11 +1,11 @@
-package java.cellery;
+package cellery;
 
-import java.cellery.rules.Rule;
+import cellery.rules.Rule;
 
 
 /**
  * Automaton is an object that can evolve {@link Cell}s contained within a
- * {@link CellArray2D} or {@link CellArray1D}.
+ * {@link cellery.Automaton} or {@link CellArray1D}.
  * 
  * @author Zach Tidwell
  * 
@@ -18,7 +18,7 @@ public abstract class Automaton {
 	private int step;
 	
 	/**
-	 * The {@link java.cellery.rules.Rule} that governs this {@link Automaton}
+	 * The {@link Rule} that governs this {@link Automaton}
 	 */
 	private Rule rule;
 	

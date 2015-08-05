@@ -1,13 +1,13 @@
-package java.cellery.topology;
+package cellery.topology;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import cellery.*;
 
 /**
- * An object that specifies how a {@link java.cellery.CellArray2D} should retrieve neighborhoods. This object specifies the
+ * An object that specifies how a {@link cellery.CellArray2D} should retrieve neighborhoods. This object specifies the
  * size and geometry of neighborhoods in the client CellArray2D and specifies an identity space over the client.
- * @see {@link Base}, {@link Space}, {@link java.cellery.CellArray2D}, {@link java.cellery.Automaton2D},
+ * @see {@link Base}, {@link Space}, {@link cellery.CellArray2D}, {@link cellery.Automaton2D}
  * @author Zach Tidwell
  */
 public class Topology2D{
@@ -22,7 +22,7 @@ public class Topology2D{
 	 * {@link Topology2D.Base#VERTICAL_2D Vertical},
 	 * {@link Topology2D.Base#LEFT_DIAGONAL Left Diagonal},
 	 * {@link Topology2D.Base#RIGHT_DIAGONAL Right Diagonal}.
-	 * Each item has a field containing the appropriate method name in {@link java.cellery.CellArray2D} so that a
+	 * Each item has a field containing the appropriate method name in {@link cellery.CellArray2D} so that a
 	 * {@link Topology2D} object can specify which method the target CellArray2D should use for
 	 * neighborhood lookup.
 	 * @see <a href="http://en.wikibooks.org/wiki/Cellular_Automata/Neighborhood">Neighborhoods</a>
@@ -31,46 +31,46 @@ public class Topology2D{
 	 */
 	public static enum Base {
 		/**
-		 * A square shaped neighborhood about a {@link java.cellery.Cell}.
+		 * A square shaped neighborhood about a {@link cellery.Cell}.
 		 * @see <a href="http://en.wikipedia.org/wiki/Moore_neighborhood">Moore neighborhood wiki</a>
 		 */
 		MOORE  ("moore"),
 		
 		/**
-		 * A diamond shaped neighborhood about a {@link java.cellery.Cell}
+		 * A diamond shaped neighborhood about a {@link cellery.Cell}
 		 * @see <a href="http://en.wikipedia.org/wiki/Von_Neumann_neighborhood">Von Neumann neighborhood wiki</a>
 		 */
 		VON_NEUMANN ("vonNeumann"),
 		
 		/**
-		 * The region about a {@link java.cellery.Cell} that includes the orthogonal Cells and the diagonal Cells from the
+		 * The region about a {@link cellery.Cell} that includes the orthogonal Cells and the diagonal Cells from the
 		 * northwest to the southeast.
 		 */
 		LEFT_CORNER ("leftCorners"),
 		
 		/**
-		 * The region about a {@link java.cellery.Cell} that includes the orthogonal Cells and the diagonal Cells from the
+		 * The region about a {@link cellery.Cell} that includes the orthogonal Cells and the diagonal Cells from the
 		 * north-east to the south-west.
 		 */
 		RIGHT_CORNER ("rightCorners"),
 		
 		/**
-		 * The region about a {@link java.cellery.Cell} that includes all the Cells that are horizontal and orthogonal.
+		 * The region about a {@link cellery.Cell} that includes all the Cells that are horizontal and orthogonal.
 		 */
 		HORIZONTAL_2D ("getHorizontal"),
 		
 		/**
-		 * The region about a {@link java.cellery.Cell} that includes all the Cells that are vertical and orthogonal.
+		 * The region about a {@link cellery.Cell} that includes all the Cells that are vertical and orthogonal.
 		 */
 		VERTICAL_2D ("getVertical"),
 		
 		/**
-		 * The region about a {@link java.cellery.Cell} that includes all the diagonal Cells from the northwest to the southeast.
+		 * The region about a {@link cellery.Cell} that includes all the diagonal Cells from the northwest to the southeast.
 		 */
 		LEFT_DIAGONAL ("getLeftDiag"),
 		
 		/**
-		 * The region about a {@link java.cellery.Cell} that includes all the diagonal Cells from the northeast to the southwest.
+		 * The region about a {@link cellery.Cell} that includes all the diagonal Cells from the northeast to the southwest.
 		 */
 		RIGHT_DIAGONAL ("getRightDiag");	
 		
@@ -138,13 +138,13 @@ public class Topology2D{
 		}
 	}
 	/**
-	 * The basis of this Topology. In other words, the definition of a neighborhood about a given {@link java.cellery.Cell}.
+	 * The basis of this Topology. In other words, the definition of a neighborhood about a given {@link cellery.Cell}.
 	 */
 	private final Base basis;
 	
 	/**
 	 * Represents the granularity of this topology, or in other words, the radius of the neighborhood about a given {@link 
-	 * java.cellery.Cell}. 1 is this finest topology and the topology becomes coarser for each successive int value. A topology can have
+	 * cellery.Cell}. 1 is this finest topology and the topology becomes coarser for each successive int value. A topology can have
 	 * arbitrary coarseness.
 	 */
 	public final int coarseness;
@@ -165,13 +165,13 @@ public class Topology2D{
 	private Method idJ;
 
 	/**
-	 * Creates a Topology2D object that specifies how a {@link java.cellery.CellArray2D} should retrieve neighborhoods. The given Basis specifies the
+	 * Creates a Topology2D object that specifies how a {@link cellery.CellArray2D} should retrieve neighborhoods. The given Basis specifies the
 	 * geometry of the neighborhood. The supported neighborhood geometries are enumerated in {@link Topology2D.Base}. Moreover, 
 	 * the size of this neighborhood is controlled by the coarseness parameter. Coarseness can be any int value, but if coarseness is 
 	 * negative, the absolute value will be used. The space parameter specifies which identity functions this {@link Topology2D}
 	 * should provide to the target CellArray2D. The Types of identity spaces supported are enumerated in {@link Topology2D.Space}.
 	 * @param basis The {@link Topology2D.Base neighborhood} geometry selected for this topology
-	 * @param coarseness sets the size of the neighborhoods about a given {@link java.cellery.Cell}.
+	 * @param coarseness sets the size of the neighborhoods about a given {@link cellery.Cell}.
 	 * @param space The {@link Topology2D.Space identification space} associated with this Topology.
 	 */
 	public Topology2D(Base basis, int coarseness, Space space){
@@ -209,7 +209,7 @@ public class Topology2D{
 		
 	}
 	/**
-	 * The identity function which maps the row index "i" of the target {@link java.cellery.CellArray2D} as specified by this {@link Topology2D}.
+	 * The identity function which maps the row index "i" of the target {@link cellery.CellArray2D} as specified by this {@link Topology2D}.
 	 * @param x
 	 * @param y
 	 * @param length
@@ -225,8 +225,8 @@ public class Topology2D{
 	}
 	
 	/**
-	 * Invokes the identity function from the {@link Topology2D} inner class specified by {@link this.space} for column coordinates of the
-	 * target {@link java.cellery.CellArray2D}.
+	 * Invokes the identity function from the {@link Topology2D} inner class specified by {@link Space} for column coordinates of the
+	 * target {@link cellery.CellArray2D}.
 	 * @param x
 	 * @param y
 	 * @param length
@@ -263,14 +263,14 @@ public class Topology2D{
 	
 	/**
 	 * The Standard topology inner class for subsets of R^2 where all boundary points are identified with themselves.
-	 * Provides Identity functions to map (i, j) coordinates of the client {@link java.cellery.CellArray2D} according to this specification.
+	 * Provides Identity functions to map (i, j) coordinates of the client {@link cellery.CellArray2D} according to this specification.
 	 * @author Zach Tidwell
-	 * @see {@link Topology2D.Space Spaces}, {@link java.cellery.CellArray2D CellArray2D}
+	 * @see {@link Topology2D.Space Spaces}, {@link cellery.CellArray2D CellArray2D}
 	 */
 	public final static class Standard {
 		
 		/**
-		 * The identify function that maps the i value of the client {@link java.cellery.CellArray2D} to the {@link Standard} identification space.
+		 * The identify function that maps the i value of the client {@link cellery.CellArray2D} to the {@link Standard} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -283,7 +283,7 @@ public class Topology2D{
 		}
 		
 		/**
-		 * The identify function that maps the j value of the client {@link java.cellery.CellArray2D} to the {@link Cylinder} identification space.
+		 * The identify function that maps the j value of the client {@link cellery.CellArray2D} to the {@link Cylinder} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -299,15 +299,15 @@ public class Topology2D{
 	/**
 	 * A topology inner class for subsets of R^2 that directly identifies the left and right boundaries to each other and all points on 
 	 * the top and bottom boundaries are identified with themselves. Provides Identity functions to map (i, j) coordinates of the client
-	 * {@link java.cellery.CellArray2D} according to this specification.
+	 * {@link cellery.CellArray2D} according to this specification.
 	 * @author Zach Tidwell
-	 * @see {@link Topology2D.Space Spaces}, {@link java.cellery.CellArray2D CellArray2D}
+	 * @see {@link Topology2D.Space Spaces}, {@link cellery.CellArray2D CellArray2D}
 	 *
 	 */
 	public final static class Cylinder {
 		
 		/**
-		 * The identify function that maps the i value of the client {@link java.cellery.CellArray2D} to the {@link Cylinder} identification space.
+		 * The identify function that maps the i value of the client {@link cellery.CellArray2D} to the {@link Cylinder} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -320,7 +320,7 @@ public class Topology2D{
 		}
 		
 		/**
-		 * The identify function that maps the j value of the client {@link java.cellery.CellArray2D} to the {@link Cylinder} identification space.
+		 * The identify function that maps the j value of the client {@link cellery.CellArray2D} to the {@link Cylinder} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -342,14 +342,14 @@ public class Topology2D{
 	/**
 	 * A topology inner class for subsets of R^2 that directly identifies the left and right boundaries to each other and 
 	 * also directly identifies the top and bottom boundaries to each other. Provides Identity functions to map (i, j) coordinates
-	 * of the client {@link java.cellery.CellArray2D} according to this specification.
+	 * of the client {@link cellery.CellArray2D} according to this specification.
 	 * @author Zach Tidwell
-	 * @see {@link Topology2D.Space Spaces}, {@link java.cellery.CellArray2D CellArray2D}
+	 * @see {@link Topology2D.Space Spaces}, {@link cellery.CellArray2D CellArray2D}
 	 */
 	public final static class Torus {
 		
 		/**
-		 * The identify function that maps the i value of the client {@link java.cellery.CellArray2D} to the {@link Torus} identification space.
+		 * The identify function that maps the i value of the client {@link cellery.CellArray2D} to the {@link Torus} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -366,7 +366,7 @@ public class Topology2D{
 			}
 		}
 		/**
-		 * The identify function that maps the j value of the client {@link java.cellery.CellArray2D} to the {@link Torus} identification space.
+		 * The identify function that maps the j value of the client {@link cellery.CellArray2D} to the {@link Torus} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -388,14 +388,14 @@ public class Topology2D{
 	/**
 	 * A topology inner class for subsets of R^2 that identifies the left and right hand boundaries to each other with a 180 degree twist 
 	 * and all points on the top and bottom boundaries are identified with themselves. Provides Identity functions to map (i, j) coordinates
-	 * of the client {@link java.cellery.CellArray2D} according to this specification.
+	 * of the client {@link cellery.CellArray2D} according to this specification.
 	 * @author Zach Tidwell
-	 * @see {@link Topology2D.Space Spaces}, {@link java.cellery.CellArray2D CellArray2D}
+	 * @see {@link Topology2D.Space Spaces}, {@link cellery.CellArray2D CellArray2D}
 	 */
 	public final static class Moebius {
 		
 		/**
-		 * The identify function that maps the i value of the client {@link java.cellery.CellArray2D} to the {@link Moebius} identification space.
+		 * The identify function that maps the i value of the client {@link cellery.CellArray2D} to the {@link Moebius} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -411,7 +411,7 @@ public class Topology2D{
 		}
 		
 		/**
-		 * The identify function that maps the j value of the client {@link java.cellery.CellArray2D} to the {@link Moebius} identification space.
+		 * The identify function that maps the j value of the client {@link cellery.CellArray2D} to the {@link Moebius} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -431,14 +431,14 @@ public class Topology2D{
 	/**
 	 * A topology inner class for subsets of R^2 that identifies the left and right hand boundaries to each other with a 180 degree twist and
 	 * directly identifies the top and bottom boundaries to each other. Provides identity functions to map (i, j) coordinates of the client
-	 * {@link java.cellery.CellArray2D} according to this specification.
+	 * {@link cellery.CellArray2D} according to this specification.
 	 * @author Zach Tidwell
-	 * @see {@link Topology2D.Space Spaces}, {@link java.cellery.CellArray2D CellArray2D}
+	 * @see {@link Topology2D.Space Spaces}, {@link cellery.CellArray2D CellArray2D}
 	 */
 	public final static class Klein {
 		
 		/**
-		 * The identify function that maps the i value of the client {@link java.cellery.CellArray2D} to the {@link Klein} identification space.
+		 * The identify function that maps the i value of the client {@link cellery.CellArray2D} to the {@link Klein} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.
@@ -460,7 +460,7 @@ public class Topology2D{
 		}
 		
 		/**
-		 * The identify function that maps the j value of the client {@link java.cellery.CellArray2D} to the {@link Klein} identification space.
+		 * The identify function that maps the j value of the client {@link cellery.CellArray2D} to the {@link Klein} identification space.
 		 * @see {@link Space}
 		 * @param i The row index of the CellArray2D.
 		 * @param j The column index of the CellArray2D.

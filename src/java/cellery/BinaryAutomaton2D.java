@@ -1,6 +1,6 @@
-package java.cellery;
+package cellery;
 
-import java.cellery.rules.Rule;
+import cellery.rules.Rule;
 
 /**
  * A 2-state {@link Automaton2D} 
@@ -9,9 +9,9 @@ import java.cellery.rules.Rule;
 public class BinaryAutomaton2D extends Automaton2D {
 	
 	/**
-	 * Constructs a 2-state {@link Automaton2D} from an initial state given by a {@link CellArray2D} and a {@link java.cellery.rules.Rule}.
+	 * Constructs a 2-state {@link Automaton2D} from an initial state given by a {@link CellArray2D} and a {@link cellery.rules.Rule}.
 	 * @param cells A {@link CellArray2D} that provides the initial state of this 
-	 * @param rule The {@link java.cellery.rules.Rule} that governs the evolution of this.
+	 * @param rule The {@link cellery.rules.Rule} that governs the evolution of this.
 	 */
 	public BinaryAutomaton2D(CellArray2D cells, Rule rule) {
 		super(cells, rule);

@@ -2,21 +2,21 @@ package cellery.rules;
 
 
 /**
- * Handles the transition rules of a {@link Automaton}. Rules are encoded in arrays of non-negative integers up to the cardinality of the neighborhood
+ * Handles the transition rules of a {@link cellery.Automaton}. Rules are encoded in arrays of non-negative integers up to the cardinality of the neighborhood
  * of the CellArray that underlies the client Automaton.
- * @see  <a href = "http://en.wikipedia.org/wiki/Life-like_cellular_automaton#Notation_for_rules">Notation for rules</a>, {@link java.cellery.topology.Topology2D.Base Base}
+ * @see  <a href = "http://en.wikipedia.org/wiki/Life-like_cellular_automaton#Notation_for_rules">Notation for rules</a>, {@link cellery.topology.Topology2D.Base Base}
  * @author Zach Tidwell
  *
  */
 public class Rule {
 	
 	/**
-	 * The Rules for the birth of a {@link Cell} in the next generation.
+	 * The Rules for the birth of a {@link cellery.Cell} in the next generation.
 	 */
 	private final int[] B;
 	
 	/**
-	 * The Rules for the survival of a {@link Cell} in the next generation
+	 * The Rules for the survival of a {@link cellery.Cell} in the next generation
 	 */
 	private final int[] S;
 	
@@ -27,7 +27,7 @@ public class Rule {
 	
 	/**
 	 * Creates a {@link Rule} from two int arrays that carry the conditions for the transition of Cells to the next
-	 * state for each iteration of the client {@link Automaton}. It assumed that each array will contain ints in the range 
+	 * state for each iteration of the client {@link cellery.Automaton}. It assumed that each array will contain ints in the range
 	 * of the cardinality of the neighborhood that is specified for the Automaton by its underlying  
 	 * @param B an array 
 	 * @param S
@@ -38,7 +38,7 @@ public class Rule {
 	}
 	/**
 	 * Creates a {@link Rule} from two int arrays that carry the conditions for the transition of Cells to the next
-	 * state for each iteration of the client {@link Automaton}. It assumed that each array will contain ints in the range 
+	 * state for each iteration of the client {@link cellery.Automaton}. It assumed that each array will contain ints in the range
 	 * of the cardinality of the neighborhood that is specified for the Automaton by its underlying  
 	 * @param B an array 
 	 * @param S

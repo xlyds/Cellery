@@ -1,11 +1,11 @@
-package java.cellery;
+package cellery;
 
-import java.cellery.rules.ElementaryRule;
-import java.cellery.rules.Rule;
+import cellery.rules.ElementaryRule;
+import cellery.rules.Rule;
 
 /**
  * A 2-state {@link Automaton1D} controlled by Stephen Wolfram's 256 Elementary Automation Rules.
- * The Rules for this Automaton are governed by the byte-codes enumerated in {@link java.cellery.rules.ElementaryRule}.
+ * The Rules for this Automaton are governed by the byte-codes enumerated in {@link cellery.rules.ElementaryRule}.
  * @author Zachary Tidwell
  *
  */
@@ -16,9 +16,9 @@ public class ElementaryAutomaton extends Automaton1D {
 	
 	/**
 	 * Constructs an {@link ElementaryAutomaton} from an initial state furnished by a {@link CellArray1D} and a Wolfram Code furnished by
-	 * {@link java.cellery.rules.ElementaryRule}
+	 * {@link cellery.rules.ElementaryRule}
 	 * @param cells A {@link CellArray1D} that provides the initial state of this 
-	 * @param E A {@link java.cellery.rules.ElementaryRule} representing the Wolfram Code that governs the evolution of this.
+	 * @param E A {@link cellery.rules.ElementaryRule} representing the Wolfram Code that governs the evolution of this.
 	 */
 	public ElementaryAutomaton(CellArray1D cells, ElementaryRule E) {
 		super(cells, new Rule(new int[] {}, new int[] {}, false));
@@ -26,8 +26,8 @@ public class ElementaryAutomaton extends Automaton1D {
 	}
 	
 	/**
-	 * Resets the current {@link java.cellery.rules.ElementaryRule} with the on provided.
-	 * @param E The new {@link java.cellery.rules.ElementaryRule}
+	 * Resets the current {@link cellery.rules.ElementaryRule} with the on provided.
+	 * @param E The new {@link cellery.rules.ElementaryRule}
 	 */
 	public void setRule(ElementaryRule E){
 		this.rule = E.getCode();

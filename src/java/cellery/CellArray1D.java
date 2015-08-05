@@ -1,11 +1,11 @@
-package java.cellery;
+package cellery;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import java.cellery.topology.Topology1D;
-import java.cellery.topology.Topology1D.Base;
-import java.cellery.topology.Topology1D.Space;
+import cellery.topology.Topology1D;
+import cellery.topology.Topology1D.Base;
+import cellery.topology.Topology1D.Space;
 
 
 /**

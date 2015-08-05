@@ -1,6 +1,6 @@
-package java.cellery;
-import java.cellery.rules.Rule;
-import java.cellery.topology.Topology2D;
+package cellery;
+import cellery.rules.Rule;
+import cellery.topology.*;
 
 
 /**

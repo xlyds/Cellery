@@ -1,9 +1,9 @@
-package java;
+package test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import java.cellery.CellArray1D;
+import cellery.CellArray1D;
 
 public class LivingCellsTest {
 	CellArray1D test = new CellArray1D(6,null);

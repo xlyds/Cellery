@@ -8,7 +8,7 @@
 /bin
 
 # Sketch
-src/processing
+src/pde
 
 # intellij
 *.iml

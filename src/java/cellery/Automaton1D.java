@@ -7,7 +7,7 @@ import cellery.rules.Rule;
  * @author Zach Tidwell
  *
  */
-public abstract class Automaton1D extends java.cellery.Automaton {
+public abstract class Automaton1D extends Automaton {
 	
 	/**
 	 * Represents the current generation of {@link Cell}s in this {@link Automaton}.

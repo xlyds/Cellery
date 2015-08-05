@@ -1,28 +1,25 @@
-package java; /**
- * 
- */
+package test;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import cellery.CellArray2D;
+import cellery.topology.Topology2D;
+import cellery.topology.Topology2D.Base;
+import cellery.topology.Topology2D.Space;
 
-import java.cellery.topology.Topology2D;
-import java.cellery.topology.Topology2D.Base;
-import java.cellery.topology.Topology2D.Space;
-import java.cellery.CellArray2D;
-
-public class KleinTest {
-	int[][] testBin = {{0,0,0,0,1},
+public class TorusTest {
+	int[][] testBin = {{1,0,0,0,1},
 					   {1,0,0,1,0},
 					   {0,0,1,1,1},
-					   {0,0,0,0,0},
+					   {1,0,0,0,0},
 					   {0,1,0,1,0}};
+	
 	CellArray2D cells;
 	Topology2D topo;
-	Space space = Space.KLN;
+	Space space = Space.TOR;
 	
 	@Test
-	public void test() {
+	public void testVert1() {
 		topo = new Topology2D(Base.VERTICAL_2D, 1, space );
 		cells = new CellArray2D(testBin, topo);
 		
@@ -37,6 +34,7 @@ public class KleinTest {
 		int e44 = 1;
 		int a44 = cells.getNeighborhood(4, 4);
 		assertEquals(e44, a44);
+		
 	}
 	
 	@Test
@@ -74,10 +72,6 @@ public class KleinTest {
 		int e44 = 1;
 		int a44 = cells.getNeighborhood(4, 4);
 		assertEquals(e44, a44);
-		
-		int e43 = 0;
-		int a43 = cells.getNeighborhood(4, 3);
-		assertEquals(e43, a43);
 	}
 	
 	@Test
@@ -85,7 +79,7 @@ public class KleinTest {
 		topo = new Topology2D(Base.RIGHT_DIAGONAL, 2, space );
 		cells = new CellArray2D(testBin, topo);
 		
-		int e12 = 0;
+		int e12 = 1;
 		int a12 = cells.getNeighborhood(1, 2);
 		assertEquals(e12, a12);
 		
@@ -111,8 +105,9 @@ public class KleinTest {
 		int a03 = cells.getNeighborhood(0, 3);
 		assertEquals(e03, a03);
 		
-		int e44 = 3;
+		int e44 = 4;
 		int a44 = cells.getNeighborhood(4, 4);
 		assertEquals(e44, a44);
 	}
+
 }

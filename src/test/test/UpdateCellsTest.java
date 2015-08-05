@@ -1,6 +1,6 @@
-package java;
+package test;
 
-import java.cellery.CellArray1D;
+import cellery.CellArray1D;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

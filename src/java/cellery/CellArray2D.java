@@ -1,5 +1,5 @@
-package java.cellery;
-import java.cellery.topology.Topology2D;
+package cellery;
+import cellery.topology.Topology2D;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -7,9 +7,9 @@ import java.lang.reflect.Method;
 /**
  * A CellArray2D is a two dimensional grid of {@link Cell}s. This object provides information to a client 
  * {@link Automaton2D} about the states of Cells in a region with a geometry that is specified by an instance 
- * of a {@link java.cellery.topology.Topology2D}.
+ * of a {@link cellery.topology.Topology2D}.
  * @author Zach Tidwell
- * @see {@link java.cellery.topology.Topology2D}, {@link Automaton2D}, {@link Cell}
+ * @see {@link cellery.topology.Topology2D}, {@link Automaton2D}, {@link Cell}
  */
 public class CellArray2D{
 	
