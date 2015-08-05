@@ -1,6 +1,6 @@
-import rules.*;
+import cellery.rules.*;
 import cellery.*;
-import topology.*;
+import cellery.topology.*;
 
 
 

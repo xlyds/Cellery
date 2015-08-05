@@ -1,6 +1,6 @@
-import rules.*;
+import cellery.rules.*;
 import cellery.*;
-import topology.*;
+import cellery.topology.*;
 
 
 
@@ -32,7 +32,7 @@ void setup(){
     background(0, 0, 0);
     
     //Dimension of the square shaped cell
-    cellSize = 2;
+    cellSize = 5;
     
     //setup grid geometry
     gridWidth = width / cellSize;

@@ -1,10 +1,11 @@
-import rules.*;
-import cellery.*;
-import topology.*;
 
-protected int cellSize;
-protected int gridWidth;
-protected int gridHeight;
+import cellery.*;
+import cellery.topology.*;
+import cellery.rules.*;
+
+int cellSize;
+int gridWidth;
+int gridHeight;
 int density;
 int[] defects1D;
 Topology1D topo;

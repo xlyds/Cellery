@@ -1,6 +1,6 @@
-import rules.*;
+import cellery.rules.*;
 import cellery.*;
-import topology.*;
+import cellery.topology.*;
 
 float theta;
 
@@ -39,7 +39,7 @@ void setup() {
   cylHeight = 300;
   
   //Assign grid geometry values
-  cellSize = 5;
+  cellSize = 10;
   lifeWidth = cylCirc/cellSize;
   lifeHeight = cylHeight/cellSize;
   density = 50;

@@ -1,6 +1,7 @@
-import rules.*;
+
 import cellery.*;
-import topology.*;
+import cellery.topology.*;
+import cellery.rules.*;
 
 protected int cellSize;
 protected int gridWidth;
