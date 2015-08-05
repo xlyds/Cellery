@@ -193,7 +193,7 @@ public class Topology1D {
 		* @param i The row index of the CellArray1D.
 		* @return the mapped i value
 		*/
-		public static int idI(int i){
+		public static int idI(int i, int length){
 			return i;
 		}
 		

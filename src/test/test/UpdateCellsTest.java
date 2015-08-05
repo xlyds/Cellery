@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class UpdateCellsTest {
-	CellArray1D test = new CellArray1D(6, null);
+	CellArray1D test = new CellArray1D(new int[6]);
 
 	@Test
 	public void test() {

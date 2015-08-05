@@ -7,7 +7,7 @@ import org.junit.Test;
 import cellery.CellArray1D;
 
 public class getNeighborhoodTest {
-	CellArray1D test = new CellArray1D(6, null);
+	CellArray1D test = new CellArray1D(new int[6]);
 
 	@Test
 	public void test() {
