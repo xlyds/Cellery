@@ -1,3 +1,5 @@
+package cellery;
+
 import cellery.rules.Rule;
 
 /**

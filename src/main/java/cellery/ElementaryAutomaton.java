@@ -1,9 +1,11 @@
+package cellery;
+
 import cellery.rules.ElementaryRule;
 import cellery.rules.Rule;
 
 /**
  * A 2-state {@link Automaton1D} controlled by Stephen Wolfram's 256 Elementary Automation Rules.
- * The Rules for this Automaton are governed by the byte-codes enumerated in {@link cellery.rules.ElementaryRule}.
+ * The Rules for this cellery.Automaton are governed by the byte-codes enumerated in {@link cellery.rules.ElementaryRule}.
  * @author Zachary Tidwell
  *
  */

@@ -1,3 +1,5 @@
+package cellery;
+
 /**
  * Static methods for generating initial conditions for 2-state Automata.
  * @author Zach Tidwell

@@ -1,7 +1,9 @@
+package cellery;
+
 import cellery.rules.Rule;
 
 /**
- * Automaton1D is a 1 dimensional extension of {@link Automaton}
+ * cellery.Automaton1D is a 1 dimensional extension of {@link Automaton}
  * @author Zach Tidwell
  *
  */
@@ -24,7 +26,7 @@ public abstract class Automaton1D extends Automaton {
 	
 	/**
 	 * Constructs a {@link Automaton1D} from a {@link CellArray1D},
-	 * @param cells a CellArray1D of Cells.
+	 * @param cells a cellery.CellArray1D of Cells.
 	 */
 	protected Automaton1D(CellArray1D cells, Rule rule) {
 		this.cells = cells;
@@ -35,8 +37,8 @@ public abstract class Automaton1D extends Automaton {
 	}
 	
 	/**
-	 * Updates the {@link Cell}s in this from a Cell buffer.
-	 * @param buffer containing the next generation's Cell configuration.
+	 * Updates the {@link Cell}s in this from a cellery.Cell buffer.
+	 * @param buffer containing the next generation's cellery.Cell configuration.
 	 */
 	protected void updateCells(CellArray1D buffer) {
 		// Swap references between buffer and cells
@@ -46,7 +48,7 @@ public abstract class Automaton1D extends Automaton {
 
 	/**
 	 * Returns a {@link CellArray1D} containing the Cells of this in it's current generation.
-	 * @return a CellArray1D containing the Cells in this.
+	 * @return a cellery.CellArray1D containing the Cells in this.
 	 */
 	protected CellArray1D cells() {
 		return this.cells;
@@ -62,8 +64,8 @@ public abstract class Automaton1D extends Automaton {
 	
 	/**
 	 * Retrieve the {@link Cell} at the i-th position.
-	 * @param i position of the Cell.
-	 * @return the Cell.
+	 * @param i position of the cellery.Cell.
+	 * @return the cellery.Cell.
 	 */
 	public Cell getCell(int i) {
 		return cells.getCell(i);

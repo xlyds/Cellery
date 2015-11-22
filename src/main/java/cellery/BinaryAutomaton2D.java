@@ -1,4 +1,5 @@
-import cellery.CellArray2D;
+package cellery;
+
 import cellery.rules.Rule;
 
 /**

@@ -1,10 +1,11 @@
-import cellery.CellArray2D;
+package cellery;
+
 import cellery.rules.Rule;
 import cellery.topology.*;
 
 
 /**
- * Automaton2D is a 2 dimensional extension of {@link Automaton}
+ * cellery.Automaton2D is a 2 dimensional extension of {@link Automaton}
  * @author Zach Tidwell
  *
  */
@@ -32,7 +33,7 @@ public abstract class Automaton2D extends Automaton {
 	
 	/**
 	 * Constructs a {@link Automaton1D} from a {@link CellArray2D}
-	 * @param cells a CellArray1D of Cells.
+	 * @param cells a cellery.CellArray1D of Cells.
 	 */
 	protected Automaton2D(CellArray2D cells, Rule rule) {
 		this.cells = cells;
@@ -45,8 +46,8 @@ public abstract class Automaton2D extends Automaton {
 	}
 
 	/**
-	 * Updates the {@link Cell}s in this from a Cell buffer.
-	 * @param buffer containing the next generation's Cell configuration.
+	 * Updates the {@link Cell}s in this from a cellery.Cell buffer.
+	 * @param buffer containing the next generation's cellery.Cell configuration.
 	 */
 	protected void updateCells(CellArray2D buffer) {
 		// Swap references between buffer and cells.
@@ -56,7 +57,7 @@ public abstract class Automaton2D extends Automaton {
 	
 	/**
 	 * Returns a {@link CellArray1D} containing the Cells of this in it's current generation.
-	 * @return a CellArray1D containing the Cells in this.
+	 * @return a cellery.CellArray1D containing the Cells in this.
 	 */
 	protected CellArray2D cells() {
 		return this.cells;
@@ -72,8 +73,8 @@ public abstract class Automaton2D extends Automaton {
 	
 	/**
 	 * Retrieve the {@link Cell} at the i-th position.
-	 * @param i position of the Cell.
-	 * @return the Cell.
+	 * @param i position of the cellery.Cell.
+	 * @return the cellery.Cell.
 	 */
 	public Cell getCell(int i, int j) {
 		return cells.getCell(i, j);

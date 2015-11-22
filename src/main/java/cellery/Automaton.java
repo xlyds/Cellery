@@ -1,8 +1,10 @@
+package cellery;
+
 import cellery.rules.Rule;
 
 
 /**
- * Automaton is an object that can evolve {@link Cell}s contained within a
+ * cellery.Automaton is an object that can evolve {@link Cell}s contained within a
  * {@link Automaton} or {@link CellArray1D}.
  * 
  * @author Zach Tidwell
@@ -43,16 +45,16 @@ public abstract class Automaton {
 	}
 	
 	/**
-	 * Returns the Rule for this Automaton
-	 * @return the rule governing this Automaton
+	 * Returns the Rule for this cellery.Automaton
+	 * @return the rule governing this cellery.Automaton
 	 */
 	public Rule getRule(){
 		return this.rule;
 	}
 	
 	/**
-	 * Sets the rule of this Automaton
-	 * @param rule the new rule governing this Automaton
+	 * Sets the rule of this cellery.Automaton
+	 * @param rule the new rule governing this cellery.Automaton
 	 */
 	public void setRule(Rule rule){
 		this.rule = rule;
