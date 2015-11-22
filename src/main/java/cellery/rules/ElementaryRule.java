@@ -1,9 +1,9 @@
 package cellery.rules;
 
 /**
- * An enumeration of all 256 Wolfram codes for Elementary Cellular Automaton rules. Each code is denoted by the decimal representation of its corresponding byte
+ * An enumeration of all 256 Wolfram codes for Elementary Cellular cellery.Automaton rules. Each code is denoted by the decimal representation of its corresponding byte
  * with the "ER" prefix.
- * @see <a href = "http://en.wikipedia.org/wiki/Elementary_cellular_automaton">Elementary Automaton Wiki</a>
+ * @see <a href = "http://en.wikipedia.org/wiki/Elementary_cellular_automaton">Elementary cellery.Automaton Wiki</a>
  * @author Zach Tidwell
  */
 public enum ElementaryRule {

@@ -18,7 +18,7 @@ public class Topology1D {
 	 * {@link Topology1D.Base#LEFT left},
 	 * {@link Topology1D.Base#RIGHT right},
 	 * Each item has a field containing the appropriate method name in {@link CellArray1D} so that a
-	 * {@link Topology1D} object can specify which method the target CellArray1D should use for
+	 * {@link Topology1D} object can specify which method the target cellery.CellArray1D should use for
 	 * neighborhood lookup.
 	 * @see <a href="http://en.wikibooks.org/wiki/Cellular_Automata/Neighborhood">Neighborhoods</a>
 	 * @author Zach Tidwell
@@ -117,7 +117,7 @@ public class Topology1D {
 	 * geometry of the neighborhood. The supported neighborhood geometries are enumerated in {@link Topology1D.Base}. Moreover,
 	 * the size of this neighborhood is controlled by the coarseness parameter. Coarseness can be any int value, but if coarseness is 
 	 * negative, the absolute value will be used. The space parameter specifies which identity functions this {@link Topology1D}
-	 * should provide to the target CellArray1D. The Types of identity spaces supported are enumerated in {@link Topology1D.Space}.
+	 * should provide to the target cellery.CellArray1D. The Types of identity spaces supported are enumerated in {@link Topology1D.Space}.
 	 * @param basis The {@link Topology1D.Base neighborhood} geometry selected for this topology
 	 * @param coarseness sets the size of the neighborhoods about a given {@link Cell}.
 	 * @param space The {@link Topology1D.Space identification space} associated with this Topology.
@@ -183,14 +183,14 @@ public class Topology1D {
 	* The Standard topology inner class for subsets of R^2 where all boundary points are identified with themselves.
 	* Provides Identity functions to map i coordinate of the client {@link CellArray1D} according to this specification.
 	* @author Zach Tidwell
-	* @see {@link Topology1D.Space Spaces}, {@link CellArray1D CellArray1D}
+	* @see {@link Topology1D.Space Spaces}, {@link CellArray1D cellery.CellArray1D}
 	*/
 	public final static class Standard {
 	
 		/**
 		* The identify function that maps the i value of the client {@link CellArray1D} to the {@link Standard} identification space.
 		* @see {@link Space}
-		* @param i The row index of the CellArray1D.
+		* @param i The row index of the cellery.CellArray1D.
 		* @return the mapped i value
 		*/
 		public static int idI(int i, int length){
@@ -204,14 +204,14 @@ public class Topology1D {
 	* The Standard topology inner class for subsets of R^1 where all boundary points are identified with themselves.
 	* Provides Identity functions to map i coordinates of the client {@link CellArray1D} according to this specification.
 	* @author Zach Tidwell
-	* @see {@link Topology1D.Space Spaces}, {@link CellArray1D CellArray1D}
+	* @see {@link Topology1D.Space Spaces}, {@link CellArray1D cellery.CellArray1D}
 	*/
 	public final static class Circle {
 		/**
 		 * The identify function that maps the j value of the client {@link CellArray1D} to the {@link Circle} identification space.
 		 * @see {@link Space}
-		 * @param i The row index of the CellArray1D.
-		 * @param length of the CellArray1D.
+		 * @param i The row index of the cellery.CellArray1D.
+		 * @param length of the cellery.CellArray1D.
 		 * @return the mapped i value
 		 */
 		public static int idI(int i, int length){

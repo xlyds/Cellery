@@ -1,4 +1,6 @@
 import static org.junit.Assert.*;
+
+import cellery.CellArray1D;
 import org.junit.Test;
 
 public class UpdateCellsTest {
