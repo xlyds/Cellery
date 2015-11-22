@@ -1,8 +1,6 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import cellery.CellArray1D;
-
 public class testToBinary {
 	CellArray1D test = new CellArray1D(new int[6]);
 
