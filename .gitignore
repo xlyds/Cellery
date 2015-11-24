@@ -4,6 +4,7 @@
 /.project
 
 # build
+/target
 /core.jar
 /bin
 
